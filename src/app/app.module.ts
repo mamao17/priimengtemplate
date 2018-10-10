@@ -7,6 +7,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import {DropdownModule} from 'primeng/dropdown';
+
 
 import { AppComponent } from './app.component';
 
@@ -22,7 +24,8 @@ import { AppComponent } from './app.component';
         HttpClientModule,
         InputTextModule,
         DialogModule,
-        ButtonModule
+        ButtonModule,
+        DropdownModule
     ],
     providers: [],
     bootstrap: [AppComponent]

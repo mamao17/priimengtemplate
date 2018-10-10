@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from './domain/car';
 import { CarService } from './services/carservice';
+import {SelectItem} from './selecteditem';
+
 
 export class PrimeCar implements Car {
     constructor(public vin?, public year?, public brand?, public color?) {}
@@ -25,12 +27,26 @@ export class AppComponent implements OnInit {
     cars: Car[];
 
     cols: any[];
+    brands: SelectItem[];
+
+
 
     constructor(private carService: CarService) { }
 
     ngOnInit() {
         this.carService.getCarsSmall().then(cars => this.cars = cars);
-
+        this.brands = [
+            { label: 'All Brands', value: null },
+            { label: 'Audi', value: 'Audi' },
+            { label: 'BMW', value: 'BMW' },
+            { label: 'Fiat', value: 'Fiat' },
+            { label: 'Honda', value: 'Honda' },
+            { label: 'Jaguar', value: 'Jaguar' },
+            { label: 'Mercedes', value: 'Mercedes' },
+            { label: 'Renault', value: 'Renault' },
+            { label: 'VW', value: 'VW' },
+            { label: 'Volvo', value: 'Volvo' }
+        ];
         this.cols = [
             { field: 'vin', header: 'Vin' },
             { field: 'year', header: 'Year' },

@@ -1,0 +1,4 @@
+.ui-table .ui-table-thead > tr > th, .ui-table .ui-table-tfoot > tr > td {
+    background-color: #f0ad4e;
+    border-color: #d9d9d9;
+}

@@ -1,9 +1,25 @@
-<p-table [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
+<p-table #dt [columns]="cols" [scrollable]="true" scrollHeight="500px"  [value]="cars" selectionMode="single" [(selection)]="selectedCar" [paginator]="true" rows="20" [globalFilterFields]="['vin','year']"
+   sortMode="multiple"
+>
+<ng-template pTemplate="caption">
+        <div class="ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-file-o" iconPos="left" label="All Data" (click)="dt.exportCSV()" style="float:left"></button>
+            <button type="button" pButton icon="fa fa-file" iconPos="left" label="Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
+        </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
+       <div class="ui-table-thead"></div>
         <tr>
-            <th *ngFor="let col of columns">
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
                 {{col.header}}
+                       
             </th>
+        </tr>
+        <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                <p-dropdown *ngSwitchCase="'brand'" [options]="brands" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+        </th>
+        <tr>
+
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
